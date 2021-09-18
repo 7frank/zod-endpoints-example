@@ -3,26 +3,15 @@ import { schema } from "../src/schema";
 import * as fs  from "fs"
 import { openApi } from "zod-endpoints";
 
-openApi
-
-
-afterAll(() => {
-
-});
-
-
 test("parameter with number", async () => {
 
-  // const servers= ServerObject[] = []
-
-  const myOpenApiSchema = openApi(schema,{ title: "No title", version: "1.0.0" },[]);
+  const myOpenApiSchema = openApi(schema,{ title: "No title", version: "1.0.0" },[{url:"http:localhost:1337/api/vi",description:"an arbitrary nonexistsing url to appease the rtx-query codegenerator"}]);
 
 
   console.log(myOpenApiSchema)
 
   expect(myOpenApiSchema).toBeDefined()
 
-
-  fs.writeFileSync("schema.json",JSON.stringify(myOpenApiSchema, null , '  ' ))
+  fs.writeFileSync("generated/schema.json",JSON.stringify(myOpenApiSchema, null , '  ' ))
 
 })
