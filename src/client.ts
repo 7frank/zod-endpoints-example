@@ -40,7 +40,8 @@ export const client: z.Client<typeof schema> = async (req) => {
       body: type
         ? {
             type: type,
-            content: type === 'application/json' ? await it.json() : await it.text(),
+            content:
+              type === "application/json" ? await it.json() : await it.text(),
           }
         : undefined,
     };

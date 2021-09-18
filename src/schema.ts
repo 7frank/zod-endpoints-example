@@ -24,7 +24,6 @@ export type Error = z.infer<typeof error>;
 export type Schema = z.output<typeof schema>;
 
 export const schema = z.endpoints([
-
   z.endpoint({
     name: "GET_PROJECT",
     method: "GET",

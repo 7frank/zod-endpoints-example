@@ -42,7 +42,8 @@ export async function app(req: http.IncomingMessage, res: http.ServerResponse) {
   const match = z.matchRequest(schema, parse);
 
   if (match && "defaultValue" in match.shape.name._def) {
-    const endpointName = match.shape.name._def.defaultValue() as keyof typeof server;
+    const endpointName =
+      match.shape.name._def.defaultValue() as keyof typeof server;
     // @ts-ignore
     const endpoint = await server[endpointName]?.(parse);
     res.writeHead(

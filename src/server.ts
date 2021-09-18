@@ -1,6 +1,6 @@
 import * as z from "zod-endpoints";
-import {service} from "./service";
-import {schema} from "./schema";
+import { service } from "./service";
+import { schema } from "./schema";
 
 export const server: z.Api<typeof schema> = {
   LIST_PROJECT: () =>
@@ -12,20 +12,15 @@ export const server: z.Api<typeof schema> = {
       },
     })),
 
-  GET_PROJECT: async ({path:[_, id]}) => {
+  GET_PROJECT: async ({ path: [_, id] }) => {
     try {
-      return await service
-        .findProjectById(id)
-        .then(
-          (content) =>
-            ({
-              status: 200,
-              body: {
-                type: "application/json",
-                content,
-              },
-            })
-        )
+      return await service.findProjectById(id).then((content) => ({
+        status: 200,
+        body: {
+          type: "application/json",
+          content,
+        },
+      }));
     } catch (err) {
       return {
         status: 500,
@@ -36,8 +31,9 @@ export const server: z.Api<typeof schema> = {
             message: err.message,
           },
         },
-      }
+      };
     }
   },
-  CREATE_PROJECT: ({body}) => service.createProject(body.content).then(() => ({status: 201}))
+  CREATE_PROJECT: ({ body }) =>
+    service.createProject(body.content).then(() => ({ status: 201 })),
 };
