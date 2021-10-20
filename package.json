@@ -7,7 +7,7 @@
     "prettier": "prettier --write \"src/**/*.{js,ts}\"",
     "start": "ts-node ./src/run.ts",
     "test": "jest",
-    "generate-api":"npx @rtk-incubator/rtk-query-codegen-openapi --hooks generated/schema.json > generated/awesome-rtx-api-api.generated.ts"
+    "generate-api":"npx --yes @rtk-incubator/rtk-query-codegen-openapi --hooks generated/schema.json > generated/awesome-rtx-api-api.generated.ts"
   },
   "dependencies": {
     "node-fetch": "^2.6.1",
